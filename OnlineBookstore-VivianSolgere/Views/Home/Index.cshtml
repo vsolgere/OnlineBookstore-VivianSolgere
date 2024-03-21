@@ -1,0 +1,46 @@
+﻿@model IEnumerable<OnlineBookstore_VivianSolgere.Models.Book>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>Book List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publisher</th>
+            <th>ISBN</th>
+            <th>Classification/Category</th>
+            <th>Number of Pages</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.Publisher</td>
+                <td>@book.Isbn</td>
+                <td>@book.Classification/@book.Category</td>
+                <td>@book.PageCount</td>
+                <td>@book.Price.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+        @for (int i = 0; i < ViewBag.TotalPages; i++)
+        {
+            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { pageNum = i })">@((i + 1).ToString())</a>
+            </li>
+        }
+    </ul>
+</nav>
