@@ -6,34 +6,24 @@
 
 <h2>Book List</h2>
 
-<div class="table-responsive">
-    <table class="table table-hover table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Title</th>
-                <th scope="col">Author</th>
-                <th scope="col">Publisher</th>
-                <th scope="col">ISBN</th>
-                <th scope="col">Classification/Category</th>
-                <th scope="col">Number of Pages</th>
-                <th scope="col">Price</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var book in Model)
-            {
-                <tr>
-                    <td>@book.Title</td>
-                    <td>@book.Author</td>
-                    <td>@book.Publisher</td>
-                    <td>@book.Isbn</td>
-                    <td>@book.Classification / @book.Category</td>
-                    <td>@book.PageCount</td>
-                    <td>@book.Price.ToString("C")</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<div class="container mt-4">
+    <div class="border p-3" style="background-color: #f8f9fa;">
+        @foreach (var book in Model)
+        {
+            <div class="row border-bottom py-3">
+                <div class="col-12">
+                    <h4 class="mb-1">
+                        @book.Title
+                        <span class="badge rounded-pill bg-info text-dark float-end">@book.Category</span>
+                    </h4>
+                    <p class="mb-1"><strong>@book.Author</strong></p>
+                    <p class="mb-1"><em>@book.Publisher</em>, ISBN: @book.Isbn</p>
+                    <p class="mb-1">@book.Classification, @book.PageCount pages</p>
+                    <p class="mb-1"><span class="fw-bold text-success">@book.Price.ToString("C")</span></p>
+                </div>
+            </div>
+        }
+    </div>
 </div>
 
 <nav aria-label="Page navigation example">
